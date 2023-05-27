@@ -59,18 +59,29 @@ creer un lien symbolique avec un nouveau fichier .yml ceci etant un fichier qui 
 
 
 ---
-- name: Deploy Apache2 with ansible
+- name: Deploy hei server web with ansible
   hosts: web_servers
   become: true
 
   tasks:
-    - name: Install Apache2
+    - name: hei server
       apt:
-        name: apache2
+        name: hei server
         state: latest
 
-    - name: Start Apache2 service
+    - name: hei server
       service:
-        name: apache2
+        name: hei server
         state: started
         enabled: true
+   
+creer un fichier .ini, un inventaire Ansible pour spécifier les serveurs sur lesquels on souhaite déployer notre site web
+server ansible_host = IP_du_server
+
+
+Il faut se placer /chemin/vers/les/fichiers par le chemin local de notre site web que nous souhaitons.
+En executant cette commande ci-dessous cela permettra de déployer notre site web sur un serveur spécifié dans l'inventaire. 
+ansible-playbook -i inventory.ini deploy_website.yml
+Pour l'execution de cette commande il faut se connectée entant que root
+
+Voilà nous avons finit de deployer notre site web
